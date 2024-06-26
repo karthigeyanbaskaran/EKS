@@ -1,6 +1,6 @@
 # EKS
 ```
-eksctl create cluster --name=ekstesting \
+eksctl create cluster --name=karthik-cluster \
                       --region=ap-south-1 \
                       --zones=ap-south-1a,ap-south-1b \
                       --without-nodegroup
@@ -9,15 +9,15 @@ eksctl create cluster --name=ekstesting \
 ```
 eksctl utils associate-iam-oidc-provider \
     --region ap-south-1 \
-    --cluster ekstesting \
+    --cluster karthik-cluster \
     --approve
 ```
 
 ```
-eksctl create nodegroup --cluster=ekstesting \
+eksctl create nodegroup --cluster=karthik-cluster \
                        --region=ap-south-1 \
-                       --name=eksdemo-nodegroup-name \
-                       --node-type=t2.micro \
+                       --name=karthik-nodegroup \
+                       --node-type=t2.small \
                        --nodes=2 \
                        --nodes-min=2 \
                        --nodes-max=3 \
