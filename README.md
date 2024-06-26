@@ -1,20 +1,20 @@
 # EKS
 ```
-$ eksctl create cluster --name=ekstesting \
+eksctl create cluster --name=ekstesting \
                       --region=ap-south-1 \
                       --zones=ap-south-1a,ap-south-1b \
                       --without-nodegroup
 ```
 
 ```
- $ eksctl utils associate-iam-oidc-provider \
+eksctl utils associate-iam-oidc-provider \
     --region ap-south-1 \
     --cluster ekstesting \
     --approve
 ```
 
 ```
-$ eksctl create nodegroup --cluster=ekstesting \
+eksctl create nodegroup --cluster=ekstesting \
                        --region=ap-south-1 \
                        --name=eksdemo-nodegroup-name \
                        --node-type=t2.micro \
