@@ -31,3 +31,23 @@ eksctl create nodegroup --cluster=karthik-cluster \
                        --appmesh-access \
                        --alb-ingress-access
 ```
+
+Private:
+```
+eksctl create nodegroup --cluster=karthik-cluster \
+                       --region=ap-south-1 \
+                       --name=karthik-nodegroup \
+                       --node-type=t2.small \
+                       --nodes=2 \
+                       --nodes-min=2 \
+                       --nodes-max=3 \
+                       --node-volume-size=10 \
+                       --ssh-access \
+                       --ssh-public-key=bash \
+                       --managed \
+                       --asg-access \
+                       --external-dns-access \
+                       --full-ecr-access \
+                       --appmesh-access \
+                       --alb-ingress-access
+                        --node-private-networking                       
