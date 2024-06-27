@@ -49,5 +49,5 @@ eksctl create nodegroup --cluster=karthik-cluster \
                        --external-dns-access \
                        --full-ecr-access \
                        --appmesh-access \
-                       --alb-ingress-access
-                        --node-private-networking                       
+                       --alb-ingress-access \
+                       --node-private-networking                       
