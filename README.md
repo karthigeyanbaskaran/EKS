@@ -50,4 +50,70 @@ eksctl create nodegroup --cluster=karthik-cluster \
                        --full-ecr-access \
                        --appmesh-access \
                        --alb-ingress-access \
-                       --node-private-networking                       
+                       --node-private-networking
+```
+
+Deployment:
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  labels:
+    app: my-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: application
+          image: nginx
+          ports:
+            - containerPort: 80
+```
+Serivce:
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: NodePort
+  selector:
+      app: my-app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 32123
+```
+Ingress:
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: karthik-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
+    
+spec:
+  rules:
+    # - host: karthigeyan.top
+        - http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: my-service
+                    port:
+                      number: 80
+
+```
